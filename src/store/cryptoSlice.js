@@ -5,7 +5,7 @@ export const fetchCryptos = createAsyncThunk(
   "cryptos/fetchCryptos",
   async function (_, { rejectWithValue }) {
     try {
-      const response = await axios.get("https://api.coincap.io/v2/assets?limit=20");
+      const response = await axios.get("https://api.coincap.io/v2/assets");
       console.log(response.data.data);
       return response.data.data
     } catch (e) {
@@ -37,6 +37,6 @@ const cryptoSlice = createSlice({
   },
 });
 
-// export const { addCrypto } = cryptoSlice.actions;
+// export const { } = cryptoSlice.actions;
 
 export default cryptoSlice.reducer;

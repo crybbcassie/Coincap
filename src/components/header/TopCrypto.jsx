@@ -1,19 +1,17 @@
 import classes from './Header.module.css'
+import { useDispatch, useSelector } from "react-redux";
 
 export default function TopCrypto(){
+      const cryptos = useSelector((state) => state.cryptos.cryptos);
     return (
       <div className={classes.cryptoContent}>
         <h1>TOP CRYPTO</h1>
         <ol>
-          <li className={classes.top}>
-            <span>Bitcoin</span> $1234
-          </li>
-          <li className={classes.top}>
-            <span>Etherium</span> $1234
-          </li>
-          <li className={classes.top}>
-            <span>Tether</span> $1234
-          </li>
+          {cryptos.slice(0, 3).map((crypto) => (
+            <li key={crypto.id} className={classes.top}>
+              <span>{crypto.name}</span> ${Math.round(crypto.priceUsd)}
+            </li>
+          ))}
         </ol>
       </div>
     );

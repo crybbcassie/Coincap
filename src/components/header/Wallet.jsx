@@ -30,7 +30,7 @@ export default function Wallet() {
       </Modal>
       <ul>
         <li>
-          Total: <span>$1234567</span>
+          Total: <h1>$1234567</h1>
         </li>
       </ul>
       <WalletOutlined className={classes.icon} />

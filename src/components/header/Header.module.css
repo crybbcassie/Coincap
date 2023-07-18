@@ -1,5 +1,5 @@
 .main{
-    margin: 10px auto;
+    margin: 10px;
     display: flex;
     justify-content: space-between;
 }
@@ -30,10 +30,22 @@ li span {
 }
 
  h1 {
-    font-size: 22px;
+    font-size: 26px;
     font-weight: lighter;
     text-align: left;
-    margin: 0 0 -10px 40px;
+    margin: 0 0 -10px 0;
+    color: #1677ff
+}
+ h4 {    
+    font-size: 16px;
+    font-weight: lighter;
+    color: #1677ff
+}
+
+li h1{
+        font-size: 26px;
+    font-weight: lighter;
+    margin: 0;
     color: #1677ff
 }
 
@@ -41,6 +53,7 @@ ol{
     list-style-type: none;
     display: flex;
     justify-content: space-between;
+    padding: 0;
 }
 
 li{
