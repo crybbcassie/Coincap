@@ -2,7 +2,7 @@ import { Button, Input, Space, Table, Tag, Modal, Pagination } from "antd";
 import {
   PlusCircleTwoTone,
   CloseOutlined,
-  WalletOutlined,
+  WalletOutlined,CloseCircleTwoTone
 } from "@ant-design/icons";
 
 export {
@@ -16,4 +16,5 @@ export {
   Modal,
   Input,
   Pagination,
+  CloseCircleTwoTone,
 };
