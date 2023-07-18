@@ -1,33 +1,22 @@
 import { WalletOutlined, Modal } from "../antd/index";
 import { useState } from "react";
 import classes from './Header.module.css'
+import WalletModal from '../modals/WalletModal'
 
 export default function Wallet() {
-      const [isModalOpen, setIsModalOpen] = useState(false);
-      const showModal = () => {
-        setIsModalOpen(true);
-      };
-      const handleOk = () => {
-        setIsModalOpen(false);
-      };
-        const handleCancel = () => {
-          setIsModalOpen(false);
-        };
+  const [visible, setVisible] = useState(false);
+
+  const handleBuyClick = () => {
+    setVisible(true);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
+  };
 
   return (
-    <div className={classes.content} onClick={showModal}>
-      <Modal
-        title="Basic Modal"
-        onClick={showModal}
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={null}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
+    <div className={classes.content} onClick={handleBuyClick}>
+      <WalletModal visible={visible} onCancel={handleCancel} />
       <ul>
         <li>
           Total: <h1>$1234567</h1>

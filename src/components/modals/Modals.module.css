@@ -1,0 +1,42 @@
+.buyContent{
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    max-width: 300px;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 170px;
+}
+
+.modalContent h1{
+    padding-bottom: 30px;
+}
+
+.modalForm {
+    display: flex;
+}
+
+.walletContent{
+    display: flex;
+    margin: 2px auto;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-width: 600px;
+}
+
+.calc{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    font-size: 26px;
+}
+
+.calc span{
+    padding-left: 7px;
+    font-weight: lighter;
+    color: #1677ff
+}
+
+.transaction{
+    font-size: 18px;
+}
