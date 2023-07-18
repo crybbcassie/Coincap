@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCryptos } from "../../store/cryptoSlice";
-import {Table, PlusCircleTwoTone} from '../antd/index'
+import { Table, PlusCircleTwoTone } from '../antd/index';
+import BuyModal from '../modals/BuyModal'
+import { useState } from 'react';
 
 export default function Main() {
   const cryptos = useSelector((state) => state.cryptos.cryptos);
@@ -21,6 +23,17 @@ export default function Main() {
       ? (n / 1000).toFixed(1) + "k"
       : n.toFixed(0);
   };
+
+  const [visible, setVisible] = useState(false);
+
+const handleBuyClick = () => {
+  setVisible(true);
+};
+
+const handleCancel = () => {
+  setVisible(false);
+};
+
 
 const columns = [
   {
@@ -78,7 +91,10 @@ const data = cryptos.map((item) => ({
 
   return (
     <>
-      <Table dataSource={data} columns={columns} />
+      <Table dataSource={data} columns={columns} onRow={(record) => ({
+    onClick: () => handleBuyClick(record),
+  })}/>
+  <BuyModal visible={visible} onCancel={handleCancel} />
       {status === "loading" && <h2>loading...</h2>}
       {error && <h2>error: {error}</h2>}
     </>
