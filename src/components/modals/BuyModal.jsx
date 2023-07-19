@@ -1,9 +1,7 @@
-import { Modal, Input, Button} from "../antd/index";
-import {useSelector} from 'react-redux'
+import { Modal, Input, Button } from "../antd/index";
 import classes from './Modals.module.css'
 
 export default function BuyModal({ visible, onCancel }) {
-      const cryptos = useSelector((state) => state.cryptos.cryptos);
   return (
     <Modal
       visible={visible}
