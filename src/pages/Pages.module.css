@@ -1,0 +1,9 @@
+.buyContent{
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    max-width: 300px;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 170px;
+}
