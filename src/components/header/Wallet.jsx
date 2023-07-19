@@ -15,14 +15,16 @@ export default function Wallet() {
   };
 
   return (
-    <div className={classes.content} onClick={handleBuyClick}>
+    <>
+      <div className={classes.content} onClick={handleBuyClick}>
+        <ul>
+          <li>
+            Total: <h1>$1234567</h1>
+          </li>
+        </ul>
+        <WalletOutlined className={classes.icon} />
+      </div>
       <WalletModal visible={visible} onCancel={handleCancel} />
-      <ul>
-        <li>
-          Total: <h1>$1234567</h1>
-        </li>
-      </ul>
-      <WalletOutlined className={classes.icon} />
-    </div>
+    </>
   );
 }
