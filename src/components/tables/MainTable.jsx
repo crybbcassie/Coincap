@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCryptos } from "../../store/cryptoSlice";
 import { Table, PlusCircleTwoTone } from '../antd/index';
 import BuyModal from '../modals/BuyModal'
+import { getCryptoById } from "../../store/cryptoSlice";
 import { useState } from 'react';
 
 export default function Main() {
@@ -45,12 +46,17 @@ const columns = [
     title: "Symbol",
     dataIndex: "symbol",
     key: "symbol",
-    render: (text) => <h4>{text}</h4>,
   },
   {
     title: "Name",
     dataIndex: "name",
     key: "name",
+    render: (text) => <h4>{text}</h4>,
+    onCell: (record) => ({
+      onClick: () => {
+        dispatch(getCryptoById(record.key));
+      },
+    }),
   },
   {
     title: "Market Cap",
@@ -74,7 +80,12 @@ const columns = [
     title: "Buy",
     dataIndex: "buy",
     key: "buy",
-    render: () => <PlusCircleTwoTone style={{ fontSize: "27px" }} />,
+    render: () => (
+      <PlusCircleTwoTone
+        style={{ fontSize: "27px" }}
+        onClick={handleBuyClick}
+      />
+    ),
   },
 ];
 
@@ -88,13 +99,19 @@ const data = cryptos.map((item) => ({
   vwap24Hr: item.vwap24Hr,
 }));
 
+function openCryptoInfo(){
+  dispatch(getCryptoById());
+  // navigate()
+}
+
 
   return (
     <>
-      <Table dataSource={data} columns={columns} onRow={(record) => ({
-    onClick: () => handleBuyClick(record),
-  })}/>
-  <BuyModal visible={visible} onCancel={handleCancel} />
+      <Table
+        dataSource={data}
+        columns={columns}
+      />
+      <BuyModal visible={visible} onCancel={handleCancel} />
       {status === "loading" && <h2>loading...</h2>}
       {error && <h2>error: {error}</h2>}
     </>

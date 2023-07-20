@@ -6,8 +6,20 @@ export const fetchCryptos = createAsyncThunk(
   async function (_, { rejectWithValue }) {
     try {
       const response = await axios.get("https://api.coincap.io/v2/assets?limit=15");
-      console.log(response.data.data);
       return response.data.data
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
+export const getCryptoById = createAsyncThunk(
+  "cryptos/fetchCryptos",
+  async function (id, { rejectWithValue }) {
+    try {
+      const response = await axios.get(
+        `https:/api.coincap.io/v2/assets/${id}`
+      );
+      return [...response.data.data]
     } catch (e) {
       return rejectWithValue(e.message);
     }
@@ -31,6 +43,10 @@ const cryptoSlice = createSlice({
       state.cryptos = action.payload;
     },
     [fetchCryptos.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = action.payload;
+    },
+    [getCryptoById.rejected]: (state, action) => {
       state.status = "rejected";
       state.error = action.payload;
     },

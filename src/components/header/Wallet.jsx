@@ -5,7 +5,6 @@ import WalletModal from '../modals/WalletModal'
 
 export default function Wallet() {
   const [visible, setVisible] = useState(false);
-  console.log(visible)
 
   const handleBuyClick = () => {
     setVisible(true);
