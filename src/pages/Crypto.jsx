@@ -2,11 +2,18 @@ import Header from "../components/header/Header";
 import {Input, Button, Table} from '../components/antd/index'
 import classes from './Pages.module.css'
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getCryptoById } from "../store/cryptoSlice";
 
 export default function Crypto() {
       const cryptos = useSelector((state) => state.cryptos.cryptos);
       const { status, error } = cryptos;
       const dispatch = useDispatch();
+
+       useEffect(() => {
+    getCryptoById()
+  }, []);
+
 
     const formatNumber = (n) => {
       return n >= 1000000000

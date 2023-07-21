@@ -24,7 +24,7 @@ export default function Wallet() {
         </ul>
         <WalletOutlined className={classes.icon} />
       </div>
-      <WalletModal visible={visible} onCancel={handleCancel} />
+      <WalletModal open={visible} onCancel={handleCancel} />
     </>
   );
 }

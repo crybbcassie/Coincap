@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCryptos } from "../../store/cryptoSlice";
+import { fetchCryptos, getCryptoById } from "../../store/cryptoSlice";
 import { Table, PlusCircleTwoTone } from '../antd/index';
 import BuyModal from '../modals/BuyModal'
-import { getCryptoById } from "../../store/cryptoSlice";
 import { useState } from 'react';
+// import { useNavigate} from "react-router";
+import { Link } from "react-router-dom";
 
 export default function Main() {
   const cryptos = useSelector((state) => state.cryptos.cryptos);
   const { status, error } = cryptos;
   const dispatch = useDispatch();
+  // const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(fetchCryptos());
@@ -35,6 +37,10 @@ const handleCancel = () => {
   setVisible(false);
 };
 
+async function openCryptoInfo(id){
+  dispatch(getCryptoById(id))
+  // .then(() => navigate("/CryptoInfo"));
+}
 
 const columns = [
   {
@@ -51,10 +57,11 @@ const columns = [
     title: "Name",
     dataIndex: "name",
     key: "name",
-    render: (text) => <h4>{text}</h4>,
+    render: (text) => <h4>{text}</h4>, 
     onCell: (record) => ({
       onClick: () => {
-        dispatch(getCryptoById(record.key));
+        dispatch(openCryptoInfo(record.key)).then(console.log(record),
+        <Link to={`/crypto/${record.id}`}/>)
       },
     }),
   },
@@ -99,19 +106,10 @@ const data = cryptos.map((item) => ({
   vwap24Hr: item.vwap24Hr,
 }));
 
-function openCryptoInfo(){
-  dispatch(getCryptoById());
-  // navigate()
-}
-
-
   return (
     <>
-      <Table
-        dataSource={data}
-        columns={columns}
-      />
-      <BuyModal visible={visible} onCancel={handleCancel} />
+      <Table dataSource={data} columns={columns} />
+      <BuyModal open={visible} onCancel={handleCancel} />
       {status === "loading" && <h2>loading...</h2>}
       {error && <h2>error: {error}</h2>}
     </>
