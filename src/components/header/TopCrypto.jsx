@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function TopCrypto(){
       const cryptos = useSelector((state) => state.cryptos.cryptos);
+      console.log(cryptos)
     return (
       <div className={classes.cryptoContent}>
         <h1>TOP CRYPTO</h1>

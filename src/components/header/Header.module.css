@@ -37,9 +37,10 @@ li span {
     color: #1677ff
 }
  h4 {    
-    font-size: 16px;
+    font-size: 17px;
     font-weight: lighter;
-    color: #1677ff
+    color: #1677ff;
+    cursor: pointer;
 }
 
 li h1{
