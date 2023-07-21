@@ -19,8 +19,7 @@ export const getCryptoById = createAsyncThunk(
       const response = await axios.get(
         `https:/api.coincap.io/v2/assets/${id}`
       );
-      
-      console.log('qqq')
+      console.log(response.data.data);
       return [...response.data.data]
     } catch (e) {
       return rejectWithValue(e.message);

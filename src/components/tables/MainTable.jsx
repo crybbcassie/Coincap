@@ -4,14 +4,13 @@ import { fetchCryptos, getCryptoById } from "../../store/cryptoSlice";
 import { Table, PlusCircleTwoTone } from '../antd/index';
 import BuyModal from '../modals/BuyModal'
 import { useState } from 'react';
-// import { useNavigate} from "react-router";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Main() {
   const cryptos = useSelector((state) => state.cryptos.cryptos);
   const { status, error } = cryptos;
   const dispatch = useDispatch();
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(fetchCryptos());
@@ -37,11 +36,6 @@ const handleCancel = () => {
   setVisible(false);
 };
 
-async function openCryptoInfo(id){
-  dispatch(getCryptoById(id))
-  // .then(() => navigate("/CryptoInfo"));
-}
-
 const columns = [
   {
     title: "Rank",
@@ -57,12 +51,12 @@ const columns = [
     title: "Name",
     dataIndex: "name",
     key: "name",
-    render: (text) => <h4>{text}</h4>, 
+    render: (text) => <h4>{text}</h4>,
     onCell: (record) => ({
-      onClick: () => {
-        dispatch(openCryptoInfo(record.key)).then(console.log(record),
-        <Link to={`/crypto/${record.id}`}/>)
-      },
+      onClick: async () => (
+        await dispatch(getCryptoById(record.key)),
+        navigate(`/Coincap/${record.key}`)
+      ),
     }),
   },
   {
