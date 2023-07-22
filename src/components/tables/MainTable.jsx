@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fetchCryptos, getCryptoById } from "../../store/cryptoSlice";
 import { Table, PlusCircleTwoTone } from '../antd/index';
 import BuyModal from '../modals/BuyModal'
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+
 
 export default function Main() {
   const cryptos = useSelector((state) => state.cryptos.cryptos);
@@ -27,8 +27,10 @@ export default function Main() {
   };
 
   const [visible, setVisible] = useState(false);
+  const [selectedCrypto, setSelectedCrypto] = useState(null);
 
-const handleBuyClick = () => {
+const handleBuyClick = (record) => {
+  setSelectedCrypto(record);
   setVisible(true);
 };
 
@@ -87,7 +89,13 @@ const columns = [
         onClick={handleBuyClick}
       />
     ),
-  },
+    onCell: (record) => ({
+      onClick:() => (
+        handleBuyClick(record),
+        console.log('click')
+    ),
+  }),
+}
 ];
 
 const data = cryptos.map((item) => ({
@@ -103,7 +111,11 @@ const data = cryptos.map((item) => ({
   return (
     <>
       <Table dataSource={data} columns={columns} />
-      <BuyModal open={visible} onCancel={handleCancel} />
+      <BuyModal
+        open={visible}
+        onCancel={handleCancel}
+        selectedCrypto={selectedCrypto}
+      />
       {status === "loading" && <h2>loading...</h2>}
       {error && <h2>error: {error}</h2>}
     </>

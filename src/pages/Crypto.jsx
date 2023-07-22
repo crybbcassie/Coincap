@@ -10,7 +10,7 @@ export default function Crypto() {
   return (
     <>
       <Header />
-
+    
       <div className={classes.buyContent}>
         <h1>Buy {cryptoData.name}</h1>
         <Input placeholder="Enter an amount" type="number" />
