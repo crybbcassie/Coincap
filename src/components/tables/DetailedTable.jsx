@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCryptoById } from "../../store/cryptoSlice";
 
-export default function Crypto() {
-  const cryptos = useSelector((state) => state.cryptos.cryptos);
-  console.log(cryptos);
+export default function Crypto({data}) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,20 +21,9 @@ export default function Crypto() {
   };
   const columns = [
     {
-      title: "Rank",
-      dataIndex: "rank",
-      key: "rank",
-    },
-    {
       title: "Symbol",
       dataIndex: "symbol",
       key: "symbol",
-      render: (text) => <h4>{text}</h4>,
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
     },
     {
       title: "Market Cap",
@@ -58,22 +45,14 @@ export default function Crypto() {
     },
   ];
 
-  // const data = cryptos.map((item) => ({
-  //   key: item.id,
-  //   rank: item.rank,
-  //   name: item.name,
-  //   symbol: item.symbol,
-  //   priceUsd: item.priceUsd,
-  //   marketCapUsd: item.marketCapUsd,
-  //   vwap24Hr: item.vwap24Hr,
-  // }));
+const dataSource = [data]
 
   return (
-      <Table
-        // dataSource={data}
-        columns={columns}
-        pagination={false}
-        bordered
-      />
+    <Table
+      dataSource={dataSource}
+      columns={columns}
+      pagination={false}
+      bordered
+    />
   );
 }

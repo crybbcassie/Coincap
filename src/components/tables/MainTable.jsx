@@ -55,7 +55,7 @@ const columns = [
     onCell: (record) => ({
       onClick: async () => (
         await dispatch(getCryptoById(record.key)),
-        navigate(`/Coincap/${record.key}`)
+        navigate(`/Coincap/${record.key}`, { state: { cryptoData: record } })
       ),
     }),
   },
