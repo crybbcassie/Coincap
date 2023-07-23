@@ -1,10 +1,11 @@
 import {Table, CloseCircleTwoTone } from "../antd/index";
-import { useSelector } from "react-redux";
-import {  removeCrypto } from "../../store/walletSlice";
-import {  useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeCrypto } from "../../store/walletSlice";
+import { useEffect } from "react";
 
 export default function WalletTable({ onTotalChange }) {
   const walletItems = useSelector((state) => state.walletItems.walletItems);
+  const dispatch = useDispatch()
 
   const columns = [
     {
@@ -33,9 +34,9 @@ export default function WalletTable({ onTotalChange }) {
       title: "Sell",
       dataIndex: "sell",
       key: "sell",
-      render: () => <CloseCircleTwoTone style={{ fontSize: "27px" }} />,
+      render: () => <CloseCircleTwoTone style={{ fontSize: "27px", cursor:'pointer' }} />,
       onCell: (record) => ({
-        onClick: () => removeCrypto(record),
+        onClick: () => dispatch(removeCrypto(record))
       }),
     },
   ];
@@ -46,5 +47,9 @@ export default function WalletTable({ onTotalChange }) {
      onTotalChange(total); 
    }, [data]);
 
-  return <Table columns={columns} dataSource={data} />;
+  return total === 0? 
+  <div style={{padding: '30px 0 60px 0'}}><h1>Your wallet is empty.</h1> <h2>Please choose the crypto and enter an amount to buy.</h2></div>
+  : 
+  <Table columns={columns} dataSource={data} />
+  
 }

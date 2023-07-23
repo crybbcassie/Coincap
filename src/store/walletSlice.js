@@ -1,5 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 
 const walletSlice = createSlice({
   name: "walletItems",
@@ -17,7 +16,7 @@ const walletSlice = createSlice({
       state.walletItems = state.walletItems.filter(
         (item) => item.name !== action.payload.name
       );
-      console.log(action.payload)
+      console.log(action.payload);
     },
   },
 });

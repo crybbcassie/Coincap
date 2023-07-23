@@ -25,15 +25,15 @@ export default function WalletModal({ open, onCancel, onTotalSumChange }) {
       width={700}
     >
       <div className={classes.walletContent}>
-        <WalletTable onTotalChange={handleTotalChange} />
-        <div className={classes.calc}>
-          <div className={classes.total}>
-            Total sum: <span>{totalSum} </span>
-          </div>
-          <div className={classes.transaction}>
-            Latest transaction: <span>+2.30</span> (1.8%)
-          </div>
-        </div>
+            <WalletTable onTotalChange={handleTotalChange} />
+            <div className={classes.calc}>
+              <div className={classes.total}>
+                Total sum: <span>${totalSum} </span>
+              </div>
+              <div className={classes.transaction}>
+                Latest transaction: <span>+2.30</span> (1.8%)
+              </div>
+            </div>
       </div>
     </Modal>
   );
