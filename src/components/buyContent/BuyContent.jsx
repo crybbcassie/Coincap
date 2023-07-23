@@ -9,7 +9,12 @@ export default function BuyContent({ selectedCrypto }) {
   const dispatch = useDispatch();
 
   const handleCryptoAmountChange = (e) => {
-    setCryptoAmount(e.target.value);
+   const input = e.target.value;
+   if (input === "") {
+     setCryptoAmount(0);
+   } else if (!isNaN(input) && Number(input) > 0) {
+     setCryptoAmount(Number(input));
+   }
   };
 
   const handleAddCrypto = () => {
