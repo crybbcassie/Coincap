@@ -4,10 +4,8 @@ import { addCrypto, removeCrypto } from "../../store/walletSlice";
 import { useState } from "react";
 
 export default function WalletTable() {
-  const cryptos = useSelector((state) => state.cryptos.cryptos);
-  const { status, error } = cryptos;
   const walletItems = useSelector((state) => state.walletItems.walletItems);
-  
+  console.log(walletItems)
   const dispatch = useDispatch();
 
   const columns = [
@@ -44,11 +42,7 @@ export default function WalletTable() {
     },
   ];
 
-  const data = cryptos.map((item) => ({
-    key: item.id,
-    name: item.symbol,
-    price: item.priceUsd,
-  }));
+  const data = walletItems
   
   return <Table columns={columns} dataSource={data} />;
 }

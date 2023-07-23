@@ -10,14 +10,14 @@ const walletSlice = createSlice({
   },
   reducers: {
     addCrypto(state, action) {
-      state.walletItems.push(action.payload.data);
-      console.loh(state, action)
+      state.walletItems.push(action.payload);
+      console.log(action.payload);
     },
     removeCrypto(state, action) {
       state.walletItems = state.walletItems.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.name !== action.payload.name
       );
-      console.log(state, action)
+      console.log(action.payload)
     },
   },
 });
