@@ -91,8 +91,7 @@ const columns = [
     ),
     onCell: (record) => ({
       onClick:() => (
-        handleBuyClick(record),
-        console.log('click')
+        handleBuyClick(record)
     ),
   }),
 }

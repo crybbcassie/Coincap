@@ -1,8 +1,7 @@
 import Header from "../components/header/Header";
-import {Input, Button } from '../components/antd/index'
-import classes from './Pages.module.css'
 import DetailedTable from '../components/tables/DetailedTable'
 import { useLocation } from "react-router-dom";
+import BuyContent from "../components/buyContent/BuyContent";
 
 export default function Crypto() {
   const location = useLocation();
@@ -10,12 +9,7 @@ export default function Crypto() {
   return (
     <>
       <Header />
-    
-      <div className={classes.buyContent}>
-        <h1>Buy {cryptoData.name}</h1>
-        <Input placeholder="Enter an amount" type="number" />
-        <Button>Buy crypto</Button>
-      </div>
+      <BuyContent selectedCrypto={cryptoData} />
       <DetailedTable data={cryptoData} />
     </>
   );
