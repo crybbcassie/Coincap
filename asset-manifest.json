@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Coincap/static/css/main.8de147a5.css",
+    "main.js": "/Coincap/static/js/main.3783d947.js",
+    "index.html": "/Coincap/index.html",
+    "main.8de147a5.css.map": "/Coincap/static/css/main.8de147a5.css.map",
+    "main.3783d947.js.map": "/Coincap/static/js/main.3783d947.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8de147a5.css",
+    "static/js/main.3783d947.js"
+  ]
+}
