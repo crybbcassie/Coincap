@@ -1,8 +1,15 @@
 import classes from './Header.module.css'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {fetchCryptos} from '../../store/cryptoSlice'
+import { useEffect } from 'react';
 
 export default function TopCrypto(){
-      const cryptos = useSelector((state) => state.cryptos.cryptos);
+        const cryptos = useSelector((state) => state.cryptos.cryptos);
+        const dispatch = useDispatch();
+
+        useEffect(() => {
+          dispatch(fetchCryptos());
+        }, [dispatch]);
     return (
       <div className={classes.cryptoContent}>
         <h1>TOP CRYPTO</h1>
