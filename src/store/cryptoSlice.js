@@ -5,7 +5,7 @@ export const fetchCryptos = createAsyncThunk(
   "cryptos/fetchCryptos",
   async function (_, { rejectWithValue }) {
     try {
-      const response = await axios.get("https://api.coincap.io/v2/assets?limit=15");
+      const response = await axios.get("https://api.coincap.io/v2/assets");
       return response.data.data
     } catch (e) {
       return rejectWithValue(e.message);
