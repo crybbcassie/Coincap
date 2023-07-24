@@ -3,10 +3,12 @@ import classes from "../modals/Modals.module.css";
 import { addCrypto } from "../../store/walletSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
-export default function BuyContent({ selectedCrypto }) {
+export default function BuyContent({ selectedCrypto, onCancel }) {
   const [cryptoAmount, setCryptoAmount] = useState(0);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleCryptoAmountChange = (e) => {
    const input = e.target.value;
@@ -26,6 +28,11 @@ export default function BuyContent({ selectedCrypto }) {
       total: cryptoAmount * selectedCrypto.priceUsd,
     };
     dispatch(addCrypto(newCrypto));
+       if (onCancel) {
+         onCancel(); 
+       } else {
+         navigate("/Coincap");
+       }
     setCryptoAmount(0);
   };
 
