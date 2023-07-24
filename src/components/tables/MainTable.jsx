@@ -5,7 +5,6 @@ import { fetchCryptos, getCryptoById } from "../../store/cryptoSlice";
 import { Table, PlusCircleTwoTone } from '../antd/index';
 import BuyModal from '../modals/BuyModal'
 
-
 export default function Main() {
   const cryptos = useSelector((state) => state.cryptos.cryptos);
   const { status, error } = cryptos;

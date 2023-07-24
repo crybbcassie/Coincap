@@ -1,9 +1,9 @@
-import { Input, Button } from "../antd/index";
-import classes from "../modals/Modals.module.css";
-import { addCrypto } from "../../store/walletSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { Input, Button } from "../antd/index";
+import classes from "../modals/Modals.module.css";
+import { addCrypto } from "../../store/walletSlice";
 
 export default function BuyContent({ selectedCrypto, onCancel }) {
   const [cryptoAmount, setCryptoAmount] = useState(0);

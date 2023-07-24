@@ -40,8 +40,7 @@ export default function WalletModal({ open, onCancel, onTotalSumChange }) {
             Total sum: <span>${totalSum} </span>
           </div>
           <div className={classes.transaction}>
-            Latest transaction: <span>{difference}$</span> ({percentageChange}
-            %)
+            Latest transaction: <span>{difference}$</span> ({percentageChange}%)
           </div>
         </div>
       </div>

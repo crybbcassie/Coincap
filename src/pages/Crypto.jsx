@@ -6,6 +6,7 @@ import BuyContent from "../components/buyContent/BuyContent";
 export default function Crypto() {
   const location = useLocation();
   const cryptoData = location.state.cryptoData;
+  
   return (
     <>
       <Header />
