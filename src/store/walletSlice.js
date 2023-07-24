@@ -9,14 +9,21 @@ const walletSlice = createSlice({
   },
   reducers: {
     addCrypto(state, action) {
-      state.walletItems.push(action.payload);
-      console.log(action.payload);
+      const { key, amount, total } = action.payload;
+      const existingCryptoIndex = state.walletItems.findIndex(
+        (crypto) => crypto.key === key
+      );
+      if (existingCryptoIndex !== -1) {
+        state.walletItems[existingCryptoIndex].amount += amount;
+        state.walletItems[existingCryptoIndex].total += total;
+      } else {
+        state.walletItems.push(action.payload);
+      }
     },
     removeCrypto(state, action) {
       state.walletItems = state.walletItems.filter(
         (item) => item.name !== action.payload.name
       );
-      console.log(action.payload);
     },
   },
 });
