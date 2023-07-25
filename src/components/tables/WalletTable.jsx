@@ -2,6 +2,7 @@ import {Table, CloseCircleTwoTone } from "../antd/index";
 import { useSelector, useDispatch } from "react-redux";
 import { removeCrypto } from "../../store/walletSlice";
 import { useEffect } from "react";
+import { formatNumber, formatPrice } from "../../helpers/helpers";
 
 export default function WalletTable({ onTotalChange }) {
   const walletItems = useSelector((state) => state.walletItems.walletItems);
@@ -17,7 +18,7 @@ export default function WalletTable({ onTotalChange }) {
       title: "Price",
       dataIndex: "price",
       key: "price",
-      render: (text) => "$" + Math.round(text * 1000) / 1000,
+      render: (text) => formatPrice(text, formatNumber),
     },
     {
       title: "Amount",
@@ -34,9 +35,11 @@ export default function WalletTable({ onTotalChange }) {
       title: "Sell",
       dataIndex: "sell",
       key: "sell",
-      render: () => <CloseCircleTwoTone style={{ fontSize: "27px", cursor:'pointer' }} />,
+      render: () => (
+        <CloseCircleTwoTone style={{ fontSize: "27px", cursor: "pointer" }} />
+      ),
       onCell: (record) => ({
-        onClick: () => dispatch(removeCrypto(record))
+        onClick: () => dispatch(removeCrypto(record)),
       }),
     },
   ];

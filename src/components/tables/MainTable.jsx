@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchCryptos, getCryptoById } from "../../store/cryptoSlice";
 import { Table, PlusCircleTwoTone } from '../antd/index';
+import { formatNumber, formatPrice } from "../../helpers/helpers";
 import BuyModal from '../modals/BuyModal'
 
 export default function Main() {
@@ -14,16 +15,6 @@ export default function Main() {
   useEffect(() => {
     dispatch(fetchCryptos());
   }, [dispatch]);
-
-  const formatNumber = (n) => {
-    return n >= 1000000000
-      ? (n / 1000000000).toFixed(1) + "bi"
-      : n >= 1000000
-      ? (n / 1000000).toFixed(1) + "mln"
-      : n >= 1000
-      ? (n / 1000).toFixed(1) + "k"
-      : n.toFixed(0);
-  };
 
   const [visible, setVisible] = useState(false);
   const [selectedCrypto, setSelectedCrypto] = useState(null);
@@ -70,13 +61,13 @@ const columns = [
     title: "VWAP (24Hr)",
     dataIndex: "vwap24Hr",
     key: "vwap24Hr",
-    render: (text) => "$" + Math.round(text * 1000) / 1000,
+    render: (text) => formatPrice(text, formatNumber),
   },
   {
     title: "Price (USD)",
     dataIndex: "priceUsd",
     key: "priceUsd",
-    render: (text) => "$" + Math.round(text * 1000) / 1000,
+    render: (text) => formatPrice(text, formatNumber),
   },
   {
     title: "Buy",
@@ -89,11 +80,9 @@ const columns = [
       />
     ),
     onCell: (record) => ({
-      onClick:() => (
-        handleBuyClick(record)
-    ),
-  }),
-}
+      onClick: () => handleBuyClick(record),
+    }),
+  },
 ];
 
 const data = cryptos.map((item) => ({
